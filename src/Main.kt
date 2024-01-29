@@ -8,6 +8,7 @@ fun main() {
  val currentState: Int = GameConstants.PLAYING
  val userInput = ""
  //game loop
+ //test
  do {
   FIR_board.printBoard()
   /** TODO implement the game loop
