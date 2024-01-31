@@ -9,10 +9,14 @@ class FourInARow
  */
     : IGame {
     // game board in 2D array initialized to zeros
-    private val board = Array(GameConstants.ROWS) { IntArray(GameConstants.COLS){0} }
+     private val board = Array(GameConstants.ROWS) { IntArray(GameConstants.COLS){0} }
 
     override fun clearBoard() {
-        // TODO Auto-generated method stub
+        for (row in 0 until GameConstants.ROWS) {
+            for (col in 0 until GameConstants.COLS) {
+                board[row][col] = GameConstants.EMPTY;
+            }
+        }
     }
 
     override fun setMove(player: Int, location: Int) {
@@ -41,7 +45,7 @@ class FourInARow
             }
             println()
             if (row != GameConstants.ROWS - 1) {
-                println("-----------") // print horizontal partition
+                println("---------------------") // print horizontal partition
             }
         }
         println()
