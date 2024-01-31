@@ -20,9 +20,9 @@ class FourInARow
     }
 
     override fun setMove(player: Int, location: Int) {
-        if(player == 0){
+        if(player == GameConstants.RED){
             board[location/6][location%6] = GameConstants.RED
-        }else if(player == 1){
+        }else if(player == GameConstants.BLUE){
             board[location/6][location%6] = GameConstants.BLUE
         }
     }

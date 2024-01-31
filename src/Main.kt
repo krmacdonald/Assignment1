@@ -17,6 +17,11 @@ fun main() {
    * 3- Check for winner
    * 4- Print game end messages in case of Win , Lose or Tie !
    */
+  print("Please provide which col you'd like to drop in (1-6), or q to quit: ")
+  val userInput = readln()
+  when(userInput){
+   "1" -> 
+  }
  } while (currentState == GameConstants.PLAYING && userInput != "q")
 // repeat if not game-over
 }
