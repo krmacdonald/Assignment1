@@ -12,15 +12,19 @@ class FourInARow
      private val board = Array(GameConstants.ROWS) { IntArray(GameConstants.COLS){0} }
 
     override fun clearBoard() {
-        for (row in 0 until GameConstants.ROWS) {
-            for (col in 0 until GameConstants.COLS) {
+        for (row in 0..<GameConstants.ROWS) {
+            for (col in 0..<GameConstants.COLS) {
                 board[row][col] = GameConstants.EMPTY;
             }
         }
     }
 
     override fun setMove(player: Int, location: Int) {
-        // TODO Auto-generated method stub
+        if(player == 0){
+            board[location/6][location%6] = GameConstants.RED
+        }else if(player == 1){
+            board[location/6][location%6] = GameConstants.BLUE
+        }
     }
 
     override val computerMove: Int
