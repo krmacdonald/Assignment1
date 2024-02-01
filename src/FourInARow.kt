@@ -47,10 +47,20 @@ class FourInARow
     override fun checkForWinner(): Int {
         for(i in 0..< 3){
             for(j in 0 ..< 6){
-
+                if(board[i][j] == board[i + 1][j] && board[i+1][j] == board[i+2][j] && board[i+2][j] == board[i+3][j]){
+                    if(board[i][j] == GameConstants.RED)
+                        return GameConstants.RED_WON
+                    else
+                        return GameConstants.BLUE_WON
+                }else if(board[j][i] == board[j][i + 1] && board[j][i + 1] == board[j][i + 2] && board[j][i + 2] == board[j][i + 3]){
+                    if(board[j][i] == GameConstants.RED)
+                        return GameConstants.RED_WON
+                    else
+                        return GameConstants.BLUE_WON
+                }
             }
         }
-        return 0
+        return GameConstants.PLAYING
     }
 
     /**
