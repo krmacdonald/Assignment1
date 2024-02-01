@@ -9,7 +9,7 @@ class FourInARow
  */
     : IGame {
     // game board in 2D array initialized to zeros
-     private val board = Array(GameConstants.ROWS) { IntArray(GameConstants.COLS){0} }
+      private val board = Array(GameConstants.ROWS) { IntArray(GameConstants.COLS){0} }
 
     override fun clearBoard() {
         for (row in 0..<GameConstants.ROWS) {
@@ -25,6 +25,7 @@ class FourInARow
         }else if(player == GameConstants.BLUE){
             board[location/6][location%6] = GameConstants.BLUE
         }
+
     }
 
     override val computerMove: Int
@@ -32,7 +33,11 @@ class FourInARow
             0
 
     override fun checkForWinner(): Int {
-        // TODO Auto-generated method stub
+        for(i in 0..< 3){
+            for(j in 0 ..< 6){
+
+            }
+        }
         return 0
     }
 
