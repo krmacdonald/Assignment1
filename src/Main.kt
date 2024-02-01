@@ -21,9 +21,8 @@ fun main() {
   val userInput = readln()
   if(userInput != "q"){
    FIR_board.setMove(GameConstants.RED, userInput.toInt() - 1)
+   FIR_board.setMove(GameConstants.BLUE, FIR_board.computerMove)
   }
-
  } while (currentState == GameConstants.PLAYING && userInput != "q")
 // repeat if not game-over
 }
- 

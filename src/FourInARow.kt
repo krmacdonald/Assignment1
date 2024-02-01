@@ -21,16 +21,28 @@ class FourInARow
 
     override fun setMove(player: Int, location: Int) {
         if(player == GameConstants.RED){
-            board[location/6][location%6] = GameConstants.RED
+            if(board[location/6][location%6] == GameConstants.EMPTY) {
+                board[location / 6][location % 6] = GameConstants.RED
+            }
         }else if(player == GameConstants.BLUE){
-            board[location/6][location%6] = GameConstants.BLUE
+            if(board[location/6][location%6] == GameConstants.EMPTY) {
+                board[location / 6][location % 6] = GameConstants.BLUE
+            }
         }
 
     }
 
     override val computerMove: Int
-        get() =// TODO Auto-generated method stub
-            0
+        get() = generateComputerMove()
+
+    private fun generateComputerMove(): Int{
+        for(i in 0 ..< 35){
+            if(board[i/6][i%6] == GameConstants.EMPTY){
+                return i
+            }
+        }
+        return -1
+    }
 
     override fun checkForWinner(): Int {
         for(i in 0..< 3){
