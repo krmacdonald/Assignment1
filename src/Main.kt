@@ -1,4 +1,8 @@
-
+/**
+ * Main program for the four in a row game
+ * @author Kyle Macdonald
+ * @date 2/4/2024
+ */
 
 
 val FIR_board = FourInARow()
@@ -17,14 +21,24 @@ fun main() {
    * 3- Check for winner
    * 4- Print game end messages in case of Win , Lose or Tie !
    */
-  print("Please provide which col you'd like to drop in (1-36), or q to quit: ")
+
+  //takes user input
+  print("Please provide which spot you'd like to drop your piece in (1-36), or q to quit: ")
   userInput = readln()
-  if(userInput != "q"){
+
+  //only sets position if user didn't input q or y to quit/continue
+  if(userInput != "q" && userInput != "y"){
+   //Sets player move based on input if they didn't quit
    FIR_board.setMove(GameConstants.RED, userInput.toInt() - 1)
+
+   //Sets cpu position
    FIR_board.setMove(GameConstants.BLUE, FIR_board.computerMove)
+
+   //Checks if there's a row matching
    currentState = FIR_board.checkForWinner()
   }
 
+  //Handles playing again logic, displays messages based on who wins
   if(currentState != GameConstants.PLAYING){
    FIR_board.printBoard();
    println("GAME OVER")
@@ -35,13 +49,11 @@ fun main() {
    }
    println("Would you like to play again? (y for yes, q for quit)")
    userInput = readln()
-
    if(userInput == "y"){
     FIR_board.clearBoard()
+    currentState = GameConstants.PLAYING;
    }
-
   }
-
- } while (currentState == GameConstants.PLAYING || userInput != "q")
+ } while (currentState == GameConstants.PLAYING && userInput != "q")
 // repeat if not game-over
 }

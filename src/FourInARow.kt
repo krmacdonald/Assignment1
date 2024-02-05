@@ -60,22 +60,18 @@ class FourInARow
                 //Horizontal victory check
                 if (board[i][j] == board[i + 1][j] && board[i + 1][j] == board[i + 2][j] && board[i + 2][j] == board[i + 3][j]) {
                     if (board[i][j] == GameConstants.RED) {
-                        print("horiz 1");
                         return GameConstants.RED_WON
                     }
                     else if (board[i][j] == GameConstants.BLUE) {
-                        print("horiz 2");
                         return GameConstants.BLUE_WON
                     }
                 }
                 //Vertical victory check
                 else if (board[j][i] == board[j][i + 1] && board[j][i + 1] == board[j][i + 2] && board[j][i + 2] == board[j][i + 3]) {
                     if (board[j][i] == GameConstants.RED) {
-                        print("vert 1");
                         return GameConstants.RED_WON
                     }
                     else if (board[j][i] == GameConstants.BLUE) {
-                        print("vert 2");
                         return GameConstants.BLUE_WON
                     }
                 }
@@ -86,21 +82,17 @@ class FourInARow
             for(j in 0 ..<3){
                 if(board[i][j] == board[i + 1][j + 1] && board[i + 1][j + 1] == board[i + 2][j + 2] && board[i + 2][j + 2] == board[i + 3][j + 3]){
                     if (board[i][j] == GameConstants.RED) {
-                        print("diag 1");
                         return GameConstants.RED_WON
                     }
                     else if (board[i][j] == GameConstants.BLUE) {
-                        print("diag 2")
                         return GameConstants.BLUE_WON
                         }
                 }
                 if(board[5-i][5-j] == board[4-i][4-j] && board[4-i][4-j] == board[3-i][3-j] && board[3-i][3-j] == board[2-i][2-j]){
                     if (board[5-i][5-j] == GameConstants.RED){
-                        print("diag 3");
                         return GameConstants.RED_WON
                     }
                     else if (board[5-i][5-j] == GameConstants.BLUE) {
-                        print("diag 4");
                         return GameConstants.BLUE_WON
                     }
                 }
