@@ -6,7 +6,7 @@ val FIR_board = FourInARow()
 /** The entry main method (the program starts here)  */
 fun main() {
  var currentState: Int = GameConstants.PLAYING
- var userInput = ""
+ var userInput: String
  //game loop
  //test
  do {
@@ -26,8 +26,14 @@ fun main() {
   }
 
   if(currentState != GameConstants.PLAYING){
+   FIR_board.printBoard();
    println("GAME OVER")
-   println("Would you like to play again? (y for yes, q for quit")
+   if(currentState == GameConstants.RED_WON){
+    println("RED WON!");
+   }else{
+    println("BLUE WON!");
+   }
+   println("Would you like to play again? (y for yes, q for quit)")
    userInput = readln()
 
    if(userInput == "y"){
@@ -36,6 +42,6 @@ fun main() {
 
   }
 
- } while (currentState == GameConstants.PLAYING && userInput != "q")
+ } while (currentState == GameConstants.PLAYING || userInput != "q")
 // repeat if not game-over
 }

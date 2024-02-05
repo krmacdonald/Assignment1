@@ -1,7 +1,7 @@
 /**
  * TicTacToe class implements the interface
- * @author relkharboutly
- * @date 2/12/2022
+ * @author krmacdonald
+ * @date 2/4/2024
  */
 class FourInARow
 /**
@@ -12,19 +12,23 @@ class FourInARow
       private val board = Array(GameConstants.ROWS) { IntArray(GameConstants.COLS){0} }
 
     override fun clearBoard() {
+        //Nested for loop that sets all values to 0
         for (row in 0..<GameConstants.ROWS) {
             for (col in 0..<GameConstants.COLS) {
-                board[row][col] = GameConstants.EMPTY;
+                board[row][col] = GameConstants.EMPTY
             }
         }
     }
 
     override fun setMove(player: Int, location: Int) {
+        //Checks for which player is next
         if(player == GameConstants.RED){
+            //Replaces location on board with player marker if spot is empty
             if(board[location/6][location%6] == GameConstants.EMPTY) {
                 board[location / 6][location % 6] = GameConstants.RED
             }
         }else if(player == GameConstants.BLUE){
+            //Same as previous if statement but for player 2
             if(board[location/6][location%6] == GameConstants.EMPTY) {
                 board[location / 6][location % 6] = GameConstants.BLUE
             }
@@ -33,8 +37,11 @@ class FourInARow
     }
 
     override val computerMove: Int
-        get() = generateComputerMove()
+        get() = generateComputerMove() //Calls the generateComputerMove function to find next available spot
 
+    /**
+     * Returns computer move by scanning array. If no available spots, returns -1.
+     */
     private fun generateComputerMove(): Int{
         for(i in 0 ..< 35){
             if(board[i/6][i%6] == GameConstants.EMPTY){
@@ -43,23 +50,63 @@ class FourInARow
         }
         return -1
     }
-
+    /**
+    Checks for the winner with nested for loops, returns game status constant based on result
+     */
     override fun checkForWinner(): Int {
-        for(i in 0..< 3){
-            for(j in 0 ..< 6){
-                if(board[i][j] == board[i + 1][j] && board[i+1][j] == board[i+2][j] && board[i+2][j] == board[i+3][j]){
-                    if(board[i][j] == GameConstants.RED)
+        //loop for vertical and horizontal checks
+        for(i in 0..< 3) {
+            for (j in 0..<6) {
+                //Horizontal victory check
+                if (board[i][j] == board[i + 1][j] && board[i + 1][j] == board[i + 2][j] && board[i + 2][j] == board[i + 3][j]) {
+                    if (board[i][j] == GameConstants.RED) {
+                        print("horiz 1");
                         return GameConstants.RED_WON
-                    else
+                    }
+                    else if (board[i][j] == GameConstants.BLUE) {
+                        print("horiz 2");
                         return GameConstants.BLUE_WON
-                }else if(board[j][i] == board[j][i + 1] && board[j][i + 1] == board[j][i + 2] && board[j][i + 2] == board[j][i + 3]){
-                    if(board[j][i] == GameConstants.RED)
+                    }
+                }
+                //Vertical victory check
+                else if (board[j][i] == board[j][i + 1] && board[j][i + 1] == board[j][i + 2] && board[j][i + 2] == board[j][i + 3]) {
+                    if (board[j][i] == GameConstants.RED) {
+                        print("vert 1");
                         return GameConstants.RED_WON
-                    else
+                    }
+                    else if (board[j][i] == GameConstants.BLUE) {
+                        print("vert 2");
                         return GameConstants.BLUE_WON
+                    }
                 }
             }
         }
+        //loop for diag win
+        for(i in 0 ..< 3){
+            for(j in 0 ..<3){
+                if(board[i][j] == board[i + 1][j + 1] && board[i + 1][j + 1] == board[i + 2][j + 2] && board[i + 2][j + 2] == board[i + 3][j + 3]){
+                    if (board[i][j] == GameConstants.RED) {
+                        print("diag 1");
+                        return GameConstants.RED_WON
+                    }
+                    else if (board[i][j] == GameConstants.BLUE) {
+                        print("diag 2")
+                        return GameConstants.BLUE_WON
+                        }
+                }
+                if(board[5-i][5-j] == board[4-i][4-j] && board[4-i][4-j] == board[3-i][3-j] && board[3-i][3-j] == board[2-i][2-j]){
+                    if (board[5-i][5-j] == GameConstants.RED){
+                        print("diag 3");
+                        return GameConstants.RED_WON
+                    }
+                    else if (board[5-i][5-j] == GameConstants.BLUE) {
+                        print("diag 4");
+                        return GameConstants.BLUE_WON
+                    }
+                }
+            }
+        }
+        //if there's no win, return the playing status
         return GameConstants.PLAYING
     }
 
@@ -67,8 +114,8 @@ class FourInARow
      * Print the game board
      */
     fun printBoard() {
-        for (row in 0 until GameConstants.ROWS) {
-            for (col in 0 until GameConstants.COLS) {
+        for (row in 0..<GameConstants.ROWS) {
+            for (col in 0..<GameConstants.COLS) {
                 printCell(board[row][col]) // print each of the cells
                 if (col != GameConstants.COLS - 1) {
                     print("|") // print vertical partition
@@ -86,7 +133,7 @@ class FourInARow
      * Print a cell with the specified "content"
      * @param content either BLUE, RED or EMPTY
      */
-    fun printCell(content: Int) {
+    private fun printCell(content: Int) {
         when (content) {
             GameConstants.EMPTY -> print("   ")
             GameConstants.BLUE -> print(" B ")
